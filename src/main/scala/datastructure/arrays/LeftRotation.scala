@@ -24,10 +24,15 @@ object LeftRotation {
     (integers.head :: integers.tail.reverse).reverse
   }
 
-  @tailrec
+//  @tailrec
   def leftRotateNtimes(integers: List[Int], n: Int): List[Int] = {
-    if (n == 0) integers
-    else leftRotateNtimes(leftRotate(integers), n  - 1)
+    val i = n % integers.length
+    val (left:List[Int], right:List[Int]) = integers.splitAt(i)
+
+    (left.reverse ::: right.reverse).reverse
+
+//    if (n == 0) integers
+//    else leftRotateNtimes(leftRotate(integers), n  - 1)
   }
 
 }
