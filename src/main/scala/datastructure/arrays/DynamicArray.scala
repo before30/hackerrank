@@ -12,27 +12,27 @@ object DynamicArray {
     val n = sc.nextInt()
     val q = sc.nextInt()
     sc.nextLine()
-    var lastAns:Long = 0L
-    val seqList = new Array[java.util.ArrayList[Long]](n)
+    var lastAns:BigInt = 0L
+    val seqList = new Array[java.util.ArrayList[BigInt]](n)
     for ( i <- 0 until n ) {
-      seqList(i) = new util.ArrayList[Long]()
+      seqList(i) = new util.ArrayList[BigInt]()
     }
 
     for ( i <- 0 until q ) {
 
       val query = sc.nextLine()
-      val (command:Int, x:Long, y:Long) = {
+      val (command:Int, x:BigInt, y:BigInt) = {
         val pattern = Pattern.compile("(\\d) (\\d) (\\d)")
         val m = pattern.matcher(query)
 
-        if (m.find()) (m.group(1).toInt, m.group(2).toLong, m.group(3).toLong)
+        if (m.find()) (m.group(1).toInt, BigInt.apply(m.group(2)), BigInt.apply(m.group(3)))
         else (-1, -1, -1)
       }
 
       command match {
         case 1 => {
           val idx = (x ^ lastAns) % n
-          val temp:java.util.ArrayList[Long] = seqList(idx.toInt)
+          val temp:java.util.ArrayList[BigInt] = seqList(idx.toInt)
 
           temp.add(y)
 
